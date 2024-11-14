@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface PreviousDetails {
@@ -11,6 +12,7 @@ interface PreviousDetails {
 }
 
 const Details = () => {
+    const router = useRouter()
     const [fullName, setFullName] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [githubUserName, setGithubuserName] = useState<string>("")
@@ -38,7 +40,8 @@ const Details = () => {
             isPreviousExperience,
             previousExperienceDetails
         }
-        console.log('formData : ', formData);
+        console.log('formData : ', (JSON.stringify(formData)));
+        router.push(`/generate-resume?${JSON.stringify(formData)}`)
     }
 
     const handleInputChange = (index: number, field: string, value: string) => {
