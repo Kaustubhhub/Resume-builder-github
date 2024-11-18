@@ -40,8 +40,8 @@ const Details = () => {
             isPreviousExperience,
             previousExperienceDetails
         }
-        console.log('formData : ', (JSON.stringify(formData)));
-        router.push(`/generate-resume?${JSON.stringify(formData)}`)
+        localStorage.setItem("resumeData", JSON.stringify(formData));
+        router.push("/generate-resume");
     }
 
     const handleInputChange = (index: number, field: string, value: string) => {

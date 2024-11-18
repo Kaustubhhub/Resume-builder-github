@@ -1,33 +1,23 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-interface PreviousDetails {
-    company: string,
-    position: string,
-    role: string,
-    joiningDate: string,
-    lastDate: string,
-    contributions: string
-}
-
-interface DetailsProps {
-    fullName: string,
-    email: string,
-    githubUserName: string,
-    yearsOfExperience: string,
-    portfolioWebsite: string,
-    educationDetails: string,
-    isPreviousExperience: string,
-    previousExperienceDetails: PreviousDetails[]
-}
-
-const ResumeBuilder = () => {
+const Page = () => {
 
     const router = useRouter()
-    // const { query } = router
 
     useEffect(() => {
-    })
-}
+        console.log("hi from use effect")
+        const resumeData = localStorage.getItem("resumeData")
+        console.log('resumeData', resumeData);
+        if (!resumeData) {
+            alert("Please fill the information.")
+            router.push("/")
+        }
+    }, []);
+
+    return <div>Hi from generate resume</div>;
+};
+
+export default Page;
