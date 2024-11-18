@@ -1,23 +1,25 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Page = () => {
 
     const router = useRouter()
-
+    const [resumeInfo, setResumeInfo] = useState({})
     useEffect(() => {
         console.log("hi from use effect")
         const resumeData = localStorage.getItem("resumeData")
-        console.log('resumeData', resumeData);
         if (!resumeData) {
             alert("Please fill the information.")
             router.push("/")
+            return
         }
+        console.log(JSON.parse(resumeData))
+        setResumeInfo(JSON.parse(resumeData))
     }, []);
 
-    return <div>Hi from generate resume</div>;
+    return <div>{JSON.stringify(resumeInfo)}</div>;
 };
 
 export default Page;
